@@ -1,0 +1,72 @@
+
+/*----------------------------------------------------------*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,code,del,dfn,em,img,ins,q,small,strong,sub,sup,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;margin:0;padding:0; -webkit-text-size-adjust: none;}
+article,aside,figure,figure img,figcaption,hgroup,footer,header,nav,section,video,object{display:block}
+a img{border:0}
+figure{position:relative}
+figure img{width:100%}
+
+.container {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height:100%;
+    background-color: #282D30;
+}
+
+
+img, object, embed {
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+    vertical-align: top;
+}
+
+.video-pg{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.vid-name{
+    text-align: center;
+    font-family: "Conv_MyriadPro-Regular";
+    font-size: 13px;
+    line-height: 25px;
+    color: #000;
+    font-weight: bold !important;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.family-movie .title{
+    font-size: 21px;
+    line-height: 28px;
+    color: #000;
+    text-align: center;
+    margin-top: 10px;
+}
+.all-videos{
+    float: left;
+    width: 100%;
+}
+.all-images{
+    float: left;
+    width: 100%;
+}
+.one-image{
+    float: left;
+    width: 31%;
+    margin: 6px 1.1%;
+    text-align: center;
+}
+.view-media{
+    margin-top: 20px;
+}
+
+
+.one-image img {
+    height: 100px;
+    width: 100px;
+}

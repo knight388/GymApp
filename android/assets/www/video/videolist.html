@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gyn Wijzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/vendorstyle.css" />
+    <link rel="stylesheet" href="../css/videolist.css" />
+    <link rel="stylesheet" href="../fancy-alert/jquery.fancybox.css" />
+    <link rel="stylesheet" href="../fancy-alert/helpers/jquery.fancybox-thumbs.css" />
+    <link rel="stylesheet" href="../fancy-alert/helpers/jquery.fancybox-buttons.css" />
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.4.min.css" />
+    <script src="../cordova.js"></script>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/jquery.mobile-1.4.4.min.js"></script>
+    <script src="../js/jquery-1.7.1.js"></script>
+    </script>
+    <script src="../js/searchlist.js"></script>
+    <script type="text/javascript" src="../js/jwplayer.js"></script>
+    <script type="text/javascript" src="../js/jwplayer.html5.js"></script>
+
+    <script type="text/javascript">
+        jwplayer.key = "q+hH0HCyS9XVn6UaAkZ+4n7uwNdtC5IcDOl2bg==";
+    </script>
+    <script src="../js/video_listing.js"></script>
+
+    <script src="../js/vendorscript.js"></script>
+
+    <script src="../js/video.js"></script>
+    <script src="../fancy-alert/jquery.fancybox.js"></script>
+    <script src="../fancy-alert/jquery.fancybox.pack.js"></script>
+    <script src="../fancy-alert/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="../fancy-alert/helpers/jquery.fancybox-buttons.js"></script>
+    <script src="../fancy-alert/helpers/jquery.fancybox-media.js"></script>
+    <script src="../fancy-alert/helpers/jquery.fancybox-thumbs.js"></script>
+
+
+</head>
+
+<body onLoad="fnload()">
+    <div class="content">
+
+
+        <div class="logo">
+            <div class="search-list"><span class="search-close"><i class="fa fa-angle-left"></i></span><input id="myFilter" data-type="search"></div><span class="logo-text"><i id="home"class="fa fa-home"></i></span><span class="logo-text left-left"><i class="fa fa-backward"></i></span><a href="#" id="title">GYMWIJZER! &#174</i></a> <span class="search">
+                <i id="animatedDownload"class="fa fa-cloud-download animation_icon"></i>
+                <i id="searchbar"class="fa fa-search"></i>
+              
+                <i id="dwn-video-list" class="fa fa-list-alt"></i><em class="language-icon"><img id="imageID" src="../images/en.gif" style="display:none;"></em></span>
+            <div class="language">
+                <ul>
+                    <li id="eng"><img src="../images/en.gif"></li>
+                    <li id="dutch"><img src="../images/nl_nl.gif"></li>
+                </ul>
+            </div>
+
+
+
+            <ul id="show" style="display:none;" class="my_drop" data-role="listview" data-filter="true" data-input="#myFilter">
+            </ul>
+        </div>
+
+
+        <div id="imgLoad" style="display:none;">
+            <div class="loader1">Loading...</div>
+        </div>
+
+
+
+        <div class="content-center">
+            <div class="gym-content">
+                <div class="content-top">
+                    <span class="title_name"></span>
+                    <span class="niveau_type"></span>
+                    <div class="flip-icon">
+                        <i class="fa fa-toggle-on"></i><span id="flipbook_val">
+                            </span>
+                    </div>
+                </div>
+                <div class="clr"></div>
+                <div id="maindiv" class="">
+                    <div class="accor-m video-list-new-layout">
+                        <ul>
+                            <li>
+                                <ul id="mainUl">
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+
+                    <a title="sign up" id="dwn-video-list" href="#divForm"></a>
+                    <div id="divForm" class="fancy-gym" style="display:none">
+                        <h1>GYMWIJZER! ®</h1>
+                        <p>Video has been downloaded <span> Sucessfully...</span></p>
+                        <a id="kk-rock" title="OK">ok</a>
+                    </div>
+
+
+                    <div id="remove" class="fancy-gym" style="display:none">
+                        <h1>GYMWIJZER! ®</h1>
+                        <p>Video has been removed <span> Sucessfully...</span></p>
+                        <a id="kk-rock1" title="OK">ok</a>
+                    </div>
+
+
+                    <div id="conform_donwload" class="fancy-gym" style="display:none">
+                        <h1>GYMWIJZER! ®</h1>
+                        <p>Do you want to delete this Video? <span></span></p>
+                        <a id="kk-rock2" title="OK">ok</a>
+                    </div>
+
+
+
+
+                    <div id="download" class="accor-m download-page" style="display:none">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-download"></i><span id="progresstext">Download</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="videoContainer" id="videoContainer">
+
+                        <div class="control">
+
+                            <div class="topControl">
+                                <div class="progress">
+                                    <span class="bufferBar"></span>
+                                    <span class="timeBar"></span>
+                                </div>
+                                <div class="time">
+                                    <span class="current"></span> /
+                                    <span class="duration"></span>
+                                </div>
+                            </div>
+
+                            <div class="btmControl">
+                                <div class="btnPlay btn" title="Play/Pause video"></div>
+                                <div class="btnStop btn" title="Stop vide   o"></div>
+                                <div class="spdText view-p btn">Speed: </div>
+                                <div class="btnx1 btn view-p text selected" title="Normal speed">x1</div>
+                                <div class="btnx3 btn view-p text" title="Fast forward x3">x3</div>
+                                <div class="btnFS btn" title="Switch to full screen"></div>
+                                <div class="volume" title="Set volume">
+                                    <span class="volumeBar"></span>
+                                </div>
+                                <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                            </div>
+
+                        </div>
+                        <div class="loading"></div>
+                        <div id="myElement">Loading the player...</div>
+                    </div>
+                    <div class="video-l-m">
+                        <div id="videolistdiv" class="videolist">
+                            <ul id="videolistul">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+
+
+<script>
+    var s = $('#myFilter').val();
+    var iscall = true;
+    $(".search-list").hide();
+    $(document).on('keyup', '#myFilter', function() {
+        if ($('#myFilter').val() == "") {
+            $('#show').hide();
+        } else
+            $('#show').show();
+        if (iscall == true) {
+            fn_serch_listing(get_language());
+            iscall = false;
+        }
+    });
+ 
+</script>
+
+</html>

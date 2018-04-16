@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>De Lesbrieven</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+    <link href="styles/dw-theme.css" rel="stylesheet" type="text/css" />
+    <link href="styles/custom.css" rel="stylesheet" type="text/css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+
+    <link media="screen" type="text/css" href="../css/style.css" rel="stylesheet"></link>
+
+
+
+
+    <script src="jquery-mobile/jquery-1.11.2.min.js" type="text/javascript"></script>
+
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            // alert("On Device Ready");
+            navigator.splashscreen.hide()
+        }
+
+        function yourJSFunctionToManageMemoryWarnings() {
+            console.log("yourJSFunctionToManageMemoryWarnings() was called");
+            myHugeGlobalObject = null;
+            myArrayOfOneMillionThings = [];
+        }
+    </script>
+
+    <script>
+        function openExternal(elem) {
+            // alert("In Open External");
+            window.open(elem.href, "_system");
+            return false; // Prevent execution of the default onClick handler
+        }
+    </script>
+
+    <script>
+        
+        var htmlDiv = '';
+        var arrFilename = [];
+        var navigation_pos;
+        var subtitle_pos;
+        var level3pos;
+
+        $(document).ready(function() {
+            if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+                $("body").addClass("ios7");
+                $("body").append('');
+            }
+
+            function data_to_array(data) {
+                var array = [];
+                for (var key in data) {
+                    var value = data[key];
+                    if (typeof value === 'string') {
+                        array[key] = value;
+                    } else {
+                        array[key] = data_to_array(value);
+                    }
+                }
+                return array;
+            }
+
+            var language = window.localStorage.getItem("language");
+
+            var jsonURL = '';
+            var appname = document.getElementById("title");
+
+            //Checking language and selecting the JSON file based upon that.
+            if (language == "eng") {
+                appname.innerHTML = "PE Pointer! ®";
+                jsonURL = '../index/navigation_english.txt';
+            } else {
+                appname.innerHTML = "GYMWIJZER! ®";
+                jsonURL = '../index/navigation.txt';
+            }
+            //Getting JOSN details from JSON file.
+            $.ajax({
+                url: jsonURL,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(data, textStatus, jqXHR) {
+                    var array = data_to_array(data);
+                    //Getting it's position from local storage.
+                    navigation_pos = window.localStorage.getItem("titlepos");
+                    subtitle_pos = window.localStorage.getItem("subtitlepos");
+                    level3pos = window.localStorage.getItem("level3pos");
+
+                    gtitlename = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['titlename'];
+                    console.log(gtitlename);
+
+                    var length = 0;
+                    var dhruv_flip = "flipbook";
+                    //Checking condition for last category where there are 3 different flipbooks for 4  different levels.
+                    if (navigation_pos == "11") {
+                        var niveau = window.localStorage.getItem("Niveau");
+                        if (niveau == "0" || niveau == "1") {
+                            length = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook'].length;
+                            totalcount = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook'].length;
+                            dhruv_flip = "flipbook";
+                        } else if (niveau == "2") {
+                            length = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook3'].length;
+                            totalcount = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook3'].length;
+                            dhruv_flip = "flipbook3";
+                        } else if (niveau == "3") {
+                            length = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook4'].length;
+                            totalcount = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook4'].length;
+                            dhruv_flip = "flipbook4";
+                        }
+                    } else {
+                        //If last category is not the selected category.
+                        length = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook'].length;
+                        totalcount = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook'].length;
+                        dhruv_flip = "flipbook";
+                    }
+                    window.localStorage.setItem("fliplength", length);
+                    console.log("Total length :> " + totalcount);
+                    var video = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos]['flipbook'];
+
+
+                    //Adding flipbook images dynamically from the JSON file for the selected category.
+                    for (var i = 0; i < totalcount; i++) {
+                        arrFilename[i] = array['navigation'][navigation_pos]['subtitle'][subtitle_pos]['level3'][level3pos][dhruv_flip][i]['flipimage'];
+                        if (language == "eng") {
+                            htmlDiv += '<li><a href="../English Images/' + arrFilename[i] + '"><img src="../English Images/' + arrFilename[i] + '" alt="' + i + '"/></a></li>';
+                        } else {
+                            htmlDiv += '<li><a href="../Flipbook images/' + arrFilename[i] + '"><img src="../Flipbook images/' + arrFilename[i] + '" alt="' + i + '"/></a></li>';
+                        }
+                        console.log("i=iiiiiii" + arrFilename[i]);
+                    }
+                    arrFilename = [];
+
+                    $(".sliderHolder .slider").append("<ul data-elem='items' id='main_flip_images'>" + htmlDiv + "</ul>");
+
+
+
+                    console.log(htmlDiv);
+                    htmlDiv = "";
+
+                    var count = parseInt(totalcount);
+                    console.log("count :> " + count);
+                }
+
+            });
+
+        });
+    </script>
+    <script>
+        $(document).on("mobileinit", function() {
+            $.mobile.toolbar.prototype.options.addBackBtn = true;
+            $.mobile.toolbar.prototype.options.backBtnText = "";
+            $.mobile.page.prototype.options.theme = "b";
+            $.mobile.defaultPageTransition = "flip";
+
+        });
+    </script>
+
+    <script>
+        document.addEventListener('deviceready', onDeviceReady, false);
+
+        function onDeviceReady() {
+
+            alert("On Devcie Platform Ready");
+
+            // Mock device.platform property if not available
+            if (!window.device) {
+                window.device = {
+                    platform: 'Browser'
+                };
+            }
+
+            handleExternalURLs();
+        }
+
+        function handleExternalURLs() {
+            // Handle click events for all external URLs
+            if (device.platform.toUpperCase() === 'ANDROID') {
+                $(document).on('click', 'a[href^="http"]', function(e) {
+                    var url = $(this).attr('href');
+                    navigator.app.loadUrl(url, {
+                        openExternal: true
+                    });
+                    e.preventDefault();
+                });
+            } else if (device.platform.toUpperCase() === 'IOS') {
+                $(document).on('click', 'a[href^="http"]', function(e) {
+                    var url = $(this).attr('href');
+                    window.open(url, '_system');
+                    e.preventDefault();
+                });
+            } else {
+                // Leave standard behaviour
+            }
+        }
+    </script>
+
+    <script>
+        $("a[target='_system']").click(function(e) {
+            e.preventDefault();
+            window.open($(e.currentTarget).attr('href'), '_system', '');
+        });
+    </script>
+
+    <script src="jquery-mobile/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+
+    <link href="jquery-mobile/touchnswipe.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    <!-- <ADDED> -->
+    <style>
+        .sliderContent {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+    </style>
+
+    <script src="jquery-mobile/jquery.mousewheel.min.js"></script>
+    <script src="jquery-mobile/modernizr.min.js"></script>
+    <script src="jquery-mobile/TweenMax.min.js"></script>
+    <script src="jquery-mobile/jquery.hammer.js"></script>
+    <script src="jquery-mobile/TouchNSwipe.min.js" type="text/javascript"></script>
+    <!-- <ADDED> -->
+
+
+    <script type="text/javascript">
+        //<ADDED>
+        var oldContentHeight = -1;
+        $(window).resize(onWindowResize);
+        TweenMax.to({}, 1, {
+            onRepeat: onWindowResize,
+            repeat: -1
+        });
+
+        $(document).on('click', '#home', function() {
+            window.location.href = "../index/index.html";
+
+        });
+        $(document).on('click', '#backward', function() {
+            window.location.href = "../video/videolist.html";
+
+        });
+
+        function onWindowResize() {
+            var sliderPages = $(".sliderPage");
+            var sliderpglength = sliderPages.length;
+            for (var i = 0; i < sliderpglength; i++) {
+                var sliderPage = sliderPages.eq(i),
+                    header = sliderPage.find(".sliderHeader"),
+                    footer = sliderPage.find(".sliderFooter"),
+                    content = sliderPage.find(".sliderContent"),
+                    newContentHeight = $(window).height() - footer.height() - header.height();
+
+                if (oldContentHeight != newContentHeight) {
+                    content.height(newContentHeight);
+                    oldContentHeight = newContentHeight;
+                }
+            }
+        }
+        //</ADDED>
+    </script>
+
+</head>
+
+<body>
+
+    <div class="content">
+
+        <div class="logo">
+            <div class="search-list" style="display: none;">
+                <span class="search-close">
+                        
+                        <i class="fa fa-angle-left"></i>
+                        
+                    </span>
+                <div class="ui-input-search ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+
+                    <input id="myFilter" class="my_search" data-type="search"></input>
+
+                    <a class="ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all ui-input-clear-hidden" aria-hidden="true" tabindex="-1" href="#" title="Clear text">
+                            
+                            Clear text
+                            
+                        </a>
+                </div>
+
+            </div>
+            <span class="logo-text">
+                    
+                    <i id="home" class="fa fa-home"></i>
+                    
+                </span>
+            <span class="logo-text left-left"><i id="backward" class="fa fa-backward"></i></span>
+            <span class="logo-text left-left" style="display:none;">
+                    
+                    <i class="fa fa-backward"></i>
+                    
+                </span>
+            <a class="ui-link" style="padding-left:55px;" href="#" id="title">
+                    
+                    GYMWIJZER! ®
+                    
+                </a>
+            <span class="search">
+                    
+                    <i id="animatedDownload" class="fa fa-cloud-download animation_icon" style="display: none;"></i>
+                    <i id="searchbar" class="fa fa-search"></i>
+                    
+                    <i id="dwn-video-list" class="fa fa-list-alt"></i>
+                    
+                    <em class="language-icon"></em>
+                    
+                </span>
+            <div class="language">
+            </div>
+        </div>
+
+        <!-- Inleiding -->
+        <div id="inleiding" data-role="page" data-theme="b" data-add-back-btn="true" style="min-height:100%; height:100%" class="sliderPage">
+
+            <div data-role="content" class="sliderContent">
+
+                <div class="sliderHolder">
+                    <div class="slider" data-elem="slider">
+                        <div class="sliderBg lightGrayBg"></div>
+                        <div class="slides" data-elem="slides" data-options="preloaderUrl:../images/ajax-loader.gif; resizeDuration:0.1;">
+
+                        </div>
+
+                        <div class="thumbsHolder" data-elem="thumbsHolder">
+                            <div class="thumbs blackBgAlpha60" data-elem="thumbs" data-options="space:2; setParentVisibility:true; initShow:false; preloaderUrl:../images/ajax-loader.gif" data-show="bottom:0px; position:absolute; display:block" data-hide="bottom:-100%; display:block"></div>
+                        </div>
+                        <div class="captionHolder" data-elem="captionHolder">
+                            <div class="caption blackBgAlpha60" data-elem="caption" data-options="initShow:false; setHolderHeight:true;" data-show="top:0%; display:block; autoAlpha:1;" data-hide="top:-60px; display:none; autoAlpha:0; ease:Power4.easeIn"> </div>
+                        </div>
+                        <div class="controlHolder">
+
+                            <div class="prevIcon controlPos2" data-elem="prev" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"> </div>
+                            <div class="nextIcon controlPos3" data-elem="next" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"> </div>
+                            <div class="zoomOutIcon controlPos4" data-elem="zoomOut" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"> </div>
+                            <div class="zoomInIcon controlPos5" data-elem="zoomIn" data-on="autoAlpha:1; cursor: pointer;" data-off="autoAlpha:0.5; cursor:default"> </div>
+                            <div class="thumbsOnIcon controlPos6" data-elem="thumbsToggle" data-on="background-position:-200px 0px;" data-off="background-position:-225px 0px;"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Inleiding -->
+
+</body>
+
+</html>

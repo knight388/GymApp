@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Gyn Wijzer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.4.min.css"/>
+    <script src="../cordova.js"></script>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/jquery.mobile-1.4.4.min.js"></script>
+    <script src="../js/media.js"></script>
+    <script src="../js/searchlist.js"></script>
+    <script src="../js/classie.js"></script>
+    <script src="../js/modernizr.custom.js"></script>
+    <script src="../js/mlpushmenu.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/component.css" />
+	
+</head>
+
+<body onLoad="fnload()">
+    <div class="content">
+        <div class="logo"><div class="search-list"><span class="search-close"><i class="fa fa-angle-left"></i></span><input id="myFilter" data-type="search"></div><span class="logo-text"><i id="home"class="fa fa-home"></i></span><span class="logo-text left-left"><i class="fa fa-backward"></i></span><a href="#">GYMWIJZER! &#174</i></a> <span class="search"><i id="searchbar"class="fa fa-search"></i><i id="dwn-video-list" class="fa fa-list-alt"></i><em class="language-icon"><img id="imageID" src="../images/en.gif" style="display:none;"></em></span>
+            <div class="language">
+                <ul>
+                    <li id="eng"><img  src="../images/en.gif" ></li>
+                    <li id="dutch"><img  src="../images/nl_nl.gif" ></li>
+                </ul>
+            </div>
+            
+            
+            
+            <ul  style="display:none;" class="my_drop"  id="show" data-role="listview" data-filter="true" data-input="#myFilter">
+            </ul>
+            </div>
+        
+        <div  id="imgLoad" style="display:none;" >
+            <div class="loader">Loading...</div>
+        </div>
+ 
+	<div class="content-center">
+	<div class="gym-content">
+        <div class="flip-page">
+            
+            <div id="mp-pusher" class="mp-pusher">
+                <a href="#" id="trigger" class="menu-trigger"><img src="../images/new-menu.png"> </a>
+                <nav id="mp-menu" class="mp-menu mp-overlap">
+                    <div id="flipdiv" data-level="1" class="mp-level mp-level-open">
+                                <ul id="flipul">
+<!--                            <li>page1</li>-->
+<!--                            <li>page2</li>-->
+<!--                            <li >page3</li>-->
+<!--                            <li>page3</li>-->
+                        </ul>
+                    </div>
+                </nav>
+		<div class="accor-m">
+			<ul>
+				<li class="media-list"><a class="a" href="#"><i id="play" class="fa fa-play-circle"></i></a>
+                    <li><a href="#"><span id="titlename">Motion themes - Bewegingsthema’s</span></a>
+					<nav class="new-resp-menu"><ul>
+    <li onclick="fn_clickmedia(0)"><a href="#"><i class="fa fa-th-list"></i><span>Video List</span></a></li>
+						<li onclick="fn_clickmedia(1)"><a href="#"><i class="fa fa-toggle-on"></i><span id="flipbook_val">Flipbook</span></a></li>
+					</ul>
+                    </nav>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+        </div>
+</div>
+</body>
+
+
+<script>
+    var s = $('#myFilter').val();
+    $(".search-list").hide();
+        
+    
+
+
+
+ </script>
+
+
+
+</html>

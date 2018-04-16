@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Gyn Wijzer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />	
+   <link rel="stylesheet" href="../css/vendorstyle.css" />
+<!--<link rel="stylesheet" href="../css/video_style.css" />-->
+   <link rel="stylesheet" href="../css/videolist.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.4.min.css"/>
+    <script src="../cordova.js"></script>
+    <script src="../js/jquery-1.7.1.js"></script>
+    <script src="../js/jquery.mobile-1.4.4.min.js">
+    </script><script src="../js/searchlist.js"></script>
+    <script type="text/javascript" src="../js/jwplayer.js"></script>
+    <script type="text/javascript" src="../js/jwplayer.html5.js"></script>
+    
+    <script type="text/javascript">jwplayer.key="q+hH0HCyS9XVn6UaAkZ+4n7uwNdtC5IcDOl2bg==";</script>
+    <script src="../js/download_video_list.js"></script>
+    <script src="../js/vendorscript.js"></script>
+    <script src="../js/video.js"></script>
+
+</head>
+
+<body>
+<div class="content">
+
+<div class="logo"><div class="search-list"><span class="search-close"><i class="fa fa-angle-left"></i></span><input id="myFilter" data-type="search"></div><span class="logo-text"><i id="home"class="fa fa-home"></i></span><span class="logo-text left-left"><i class="fa fa-backward"></i></span><a href="#" id="title">GYMWIJZER! &#174</i></a> <span class="search">
+    <i id="animatedDownload"class="fa fa-cloud-download animation_icon"></i>
+    <i id="searchbar"class="fa fa-search"></i><em class="language-icon"><img id="imageID" src="../images/en.gif" style="display:none;"></em></span>
+    <div class="language">
+        <ul>
+            <li id="eng"><img  src="../images/en.gif" ></li>
+            <li id="dutch"><img  src="../images/nl_nl.gif" ></li>
+        </ul>
+    </div>
+    <!-- Dhruv -->
+    <img id="testImage"></img>
+    <!-- -->
+    <ul id="show"  style="display:none;" class="my_drop"  data-role="listview" data-filter="true" data-input="#myFilter">
+    </ul>
+    </div>
+
+
+<div  id="imgLoad" style="display:none;" >
+    <div class="loader">Loading...</div>
+</div>
+
+
+	<div class="content-center">
+	<div class="gym-content" >
+		
+
+                   
+                    <div class="videoContainer" style="margin-top:30px;">
+    
+                        <!--<video id="myVideo" controls preload="auto" poster="../images/poster.png" >
+                              <source src="http://download.wavetlan.com/SVV/Media/HTTP/BlackBerry.mp4" />
+                        </video>-->
+                        <div class="control">
+
+                <div class="topControl">
+                        <div class="progress">
+                                <span class="bufferBar"></span>
+                                    <span class="timeBar"></span>
+                            </div>
+            <div class="time">
+                <span class="current"></span> / 
+                <span class="duration"></span> 
+            </div>
+        </div>
+        
+        <div class="btmControl">
+            <div class="btnPlay btn" title="Play/Pause video"></div>
+            <div class="btnStop btn" title="Stop vide   o"></div>
+            <div class="spdText view-p btn">Speed: </div>
+            <div class="btnx1 btn view-p text selected" title="Normal speed">x1</div>
+            <div class="btnx3 btn view-p text" title="Fast forward x3">x3</div>
+            <div class="btnFS btn" title="Switch to full screen"></div>
+            <!-- <div class="btnLight lighton btn" title="Turn on/off light"></div> -->
+            <div class="volume" title="Set volume">
+            <span class="volumeBar"></span>
+            </div>
+            <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+        </div>
+        
+    </div>
+    <div class="loading"></div>
+    <div id="myElement">No video has been downloaded.</div>
+
+</div>
+
+                <div  id="videolistdiv"    class="videolist download-v">
+      <ul id="videolistul">
+<!--    <li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li>-->
+<!--    <li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li><li><a><div vid_url="http://www.visueellerenbewegen.nl/wp-content/uploads/2013/04/ll1-balanceren-balanceren-lopenoversmalvlak-zijkant-niv1.mp4" vid_name="Niveau1-1-1" id="0" class="list-v"><img height="100" width="100" src="http://goo.gl/Ws5TqL"><div class="paly-b"><i class="fa fa-play"></i></div></div><span>Niveau1-1-1</span></a></li>-->
+      </ul>
+    </div>
+	</div>
+</div>
+</body>
+<script>
+    
+    
+    var s = $('#myFilter').val();
+    var iscall=true;
+      $(".search-list").hide()
+    $(document).on('keyup', '#myFilter', function() {
+                   
+                   
+                   if($('#myFilter').val()=="")
+                   {
+                        $('#show').hide();
+                   }
+                   else
+                        $('#show').show();
+                   
+                   if(iscall==true)
+                   {
+                        fn_serch_listing(get_language());
+                        iscall=false;
+                   }
+                   });
+   </script>
+</html>
+
